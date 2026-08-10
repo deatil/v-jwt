@@ -29,13 +29,13 @@ This library supports the parsing and verification as well as the generation and
 Add the dependency to your project:
 
 ```sh
-v install deatil.v_jwt
+v install deatil.vjwt
 ```
 
 The `v-jwt` structure can be imported in your application with:
 
 ```v
-import deatil.v_jwt.jwt
+import deatil.vjwt.jwt
 ```
 
 
@@ -44,7 +44,7 @@ import deatil.v_jwt.jwt
 ~~~v
 module main
 
-import deatil.v_jwt.jwt
+import deatil.vjwt.jwt
 
 fn main() {
 	mut claims := map[string]string{}
@@ -80,7 +80,7 @@ fn main() {
 module main
 
 import time
-import deatil.v_jwt.jwt
+import deatil.vjwt.jwt
 
 fn main() {
     token_string := "eyJ0eXAiOiJKV0UiLCJhbGciOiJFUzI1NiIsImtpZCI6ImtpZHMifQ.eyJpc3MiOiJpc3MiLCJpYXQiOjE1Njc4NDIzODgsImV4cCI6MTc2Nzg0MjM4OCwiYXVkIjoiZXhhbXBsZS5jb20iLCJzdWIiOiJzdWIiLCJqdGkiOiJqdGkgcnJyIiwibmJmIjoxNTY3ODQyMzg4fQ.dGVzdC1zaWduYXR1cmU"

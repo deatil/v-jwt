@@ -1,7 +1,7 @@
 Module {
-	name: 'v_jwt'
+	name: 'vjwt'
 	description: 'A JWT (JSON Web Token) library for vlang.'
-	version: '0.0.1'
+	version: '0.0.2'
 	license: 'Apache2'
 	dependencies: []
 }
