@@ -1,3 +1,27 @@
-.zig-cache/
-zig-out/
-*.o
+# Binaries for programs and plugins
+main
+v_jwt
+*.exe
+*.exe~
+*.so
+*.dylib
+*.dll
+
+# Ignore binary output folders
+bin/
+
+# Ignore common editor/system specific metadata
+.DS_Store
+.idea/
+.vscode/
+*.iml
+
+# ENV
+.env
+
+# Web assets and local databases
+*.db
+*.js
+
+# Ignore installed modules through `v install --local`:
+modules/
