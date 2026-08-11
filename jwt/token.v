@@ -112,6 +112,10 @@ fn (t Token) get_raw_no_signature() string {
 	return "${header}.${claims}"
 }
 
+pub fn (t Token) get_header() !HeadersData {
+	return HeadersData.new(t)!
+}
+
 pub fn (t Token) get_headers() !JsonAny {
 	return json_decode[JsonAny](t.header)
 }
@@ -122,6 +126,10 @@ pub fn (t Token) get_headers_t[T]() !T {
 
 pub fn (t Token) get_headers_raw() string {
 	return t.header
+}
+
+pub fn (t Token) get_claim() !ClaimsData {
+	return ClaimsData.new(t)!
 }
 
 pub fn (t Token) get_claims() !JsonAny {
@@ -138,4 +146,97 @@ pub fn (t Token) get_claims_raw() string {
 
 pub fn (t Token) get_signature() string {
 	return t.signature
+}
+
+pub struct HeadersData {
+	headers map[string]JsonAny
+}
+
+pub fn HeadersData.new(token Token) !HeadersData {
+	headers := token.get_headers_t[map[string]JsonAny]()!
+
+	return HeadersData{
+		headers: headers 
+	}
+}
+
+pub fn (h HeadersData) get_type() ?string {
+	return h.get_string("typ")
+}
+
+pub fn (h HeadersData) get_algorithm() ?string {
+	return h.get_string("alg")
+}
+
+pub fn (h HeadersData) get_key_id() ?string {
+	return h.get_string("kid")
+}
+
+pub fn (h HeadersData) get_content_type() ?string {
+	return h.get_string("cty")
+}
+
+pub fn (h HeadersData) get_string(name string) ?string {
+	res := h.headers[name] or { return none }
+	return res.str()
+}
+
+pub fn (h HeadersData) get_any(name string) ?JsonAny {
+	res := h.headers[name] or { return none }
+	return res
+}
+
+pub struct ClaimsData {
+	claims map[string]JsonAny
+}
+
+pub fn ClaimsData.new(token Token) !ClaimsData {
+	claims := token.get_claimss_t[map[string]JsonAny]()!
+
+	return ClaimsData{
+		claims: claims 
+	}
+}
+
+pub fn (c ClaimsData) get_expiration_time() ?i64 {
+	return c.get_int("exp")
+}
+
+pub fn (c ClaimsData) get_not_before() ?i64 {
+	return c.get_int("nbf")
+}
+
+pub fn (c ClaimsData) get_issued_at() ?i64 {
+	return c.get_int("iat")
+}
+
+pub fn (c ClaimsData) get_audience() ?string {
+	return c.get_string("aud")
+}
+
+pub fn (c ClaimsData) get_issuer() ?string {
+	return c.get_string("iss")
+}
+
+pub fn (c ClaimsData) get_subject() ?string {
+	return c.get_string("sub")
+}
+
+pub fn (c ClaimsData) get_id() ?string {
+	return c.get_string("jti")
+}
+
+pub fn (c ClaimsData) get_string(name string) ?string {
+	res := c.claims[name] or { return none }
+	return res.str()
+}
+
+pub fn (c ClaimsData) get_int(name string) ?i64 {
+	res := c.claims[name] or { return none }
+	return res.i64()
+}
+
+pub fn (c ClaimsData) get_any(name string) ?JsonAny {
+	res := c.claims[name] or { return none }
+	return res
 }

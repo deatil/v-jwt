@@ -19,6 +19,10 @@ fn test_signing_method_hs256() {
 
 	parsed := h.parse(token_string, key.bytes())!
 
+	headers := parsed.get_headers_t[map[string]string]()!
+	assert "JWT" == headers["typ"]
+	assert "HS256" == headers["alg"]
+
 	claims2 := parsed.get_claims()!
 	claims21 := claims2.as_map_of_strings()
 	assert "example.com" == claims21["aud"]
@@ -295,5 +299,80 @@ fn test_signing_method_blake2b_check_fail() {
 	assert need_err
 }
 
+fn test_signing_method_hs256_data() {
+	mut h := signing_method_hs256
 
+	mut claims := map[string]string{}
+	claims["aud"] = "example.com"
+	claims["iat"] = "foo"
 
+    key := "test-key"
+
+	token_string := h.sign[map[string]string](claims, key.bytes())!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_string, key.bytes())!
+
+	headers := parsed.get_header()!
+	assert "JWT" == headers.get_type()?
+	assert "HS256" == headers.get_algorithm()?
+
+	claims2 := parsed.get_claim()!
+	assert "example.com" == claims2.get_audience()?
+	assert "foo" == claims2.get_string("iat")?
+}
+
+fn test_signing_method_hs256_data2() {
+	mut h := signing_method_hs256
+
+	mut header := map[string]string{}
+	header["typ"] = "JWT"
+	header["alg"] = "HS256"
+	header["kid"] = "your key"
+	header["cty"] = "utf8"
+	header["ui"] = "JWK"
+
+	mut claims := map[string]JsonAny{}
+	claims["exp"] = JsonAny(1788969629)
+	claims["nbf"] = JsonAny(1786377689)
+	claims["iat"] = JsonAny(1786377629)
+	claims["aud"] = JsonAny("example.com")
+	claims["iss"] = JsonAny("issuer")
+	claims["sub"] = JsonAny("subject")
+	claims["jti"] = JsonAny("JwtId")
+	claims["userid"] = JsonAny("test")
+
+    key := "test-key"
+
+	token_string := h.sign_with_header[map[string]string, map[string]JsonAny](header, claims, key.bytes())!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_string, key.bytes())!
+
+	headers := parsed.get_header()!
+	assert "JWT" == headers.get_type()?
+	assert "HS256" == headers.get_algorithm()?
+	assert "your key" == headers.get_key_id()?
+	assert "utf8" == headers.get_content_type()?
+	assert "JWK" == headers.get_string("ui")?
+
+	a1 := headers.get_any("ui")?
+	assert "JWK" == a1.str()
+
+	assert "" == headers.get_string("ui2") or { "" }
+
+	claims2 := parsed.get_claim()!
+	assert 1788969629 == claims2.get_expiration_time()?
+	assert 1786377689 == claims2.get_not_before()?
+	assert 1786377629 == claims2.get_issued_at()?
+	assert "example.com" == claims2.get_audience()?
+	assert "issuer" == claims2.get_issuer()?
+	assert "subject" == claims2.get_subject()?
+	assert "JwtId" == claims2.get_id()?
+	assert "test" == claims2.get_string("userid")?
+
+	a2 := claims2.get_any("userid")?
+	assert "test" == a2.str()
+
+	assert "" == claims2.get_string("userid2") or { "" }
+}

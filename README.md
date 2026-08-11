@@ -69,7 +69,7 @@ fn main() {
     // claims aud: example.com
 	claims2 := parsed.get_claims()!
 	claims21 := claims2.as_map_of_strings()
-    println("claims aud: ${claims21["aud"]} \n")
+    println("claims aud: ${claims21["aud"]}")
 }
 ~~~
 
