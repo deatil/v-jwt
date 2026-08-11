@@ -47,11 +47,11 @@ pub fn (j Jwt[S, V]) alg() string {
 	return j.signer.alg()
 }
 
-pub fn (mut j Jwt[S, V]) sign_length() int {
+pub fn (j Jwt[S, V]) sign_length() int {
 	return j.signer.sign_length()
 }
 
-pub fn (mut j Jwt[S, V]) sign[T](claims T, sign_key S) !string {
+pub fn (j Jwt[S, V]) sign[T](claims T, sign_key S) !string {
 	mut header := map[string]string{}
 	header["typ"] = "JWT"
 	header["alg"] = j.signer.alg()
@@ -59,7 +59,7 @@ pub fn (mut j Jwt[S, V]) sign[T](claims T, sign_key S) !string {
 	return j.sign_with_header[map[string]string, T](header, claims, sign_key);
 }
 
-pub fn (mut j Jwt[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !string {
+pub fn (j Jwt[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !string {
     mut t := Token.new()
     t.set_header[A](header)
     t.set_claims[B](claims)
@@ -72,7 +72,7 @@ pub fn (mut j Jwt[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) 
 	return t.signed_string()
 }
 
-pub fn (mut j Jwt[S, V]) parse(token_string string, verify_key V) !Token {
+pub fn (j Jwt[S, V]) parse(token_string string, verify_key V) !Token {
 	mut t := Token.new()
 	t.parse(token_string)
 

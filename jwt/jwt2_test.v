@@ -5,6 +5,7 @@ import crypto.ed25519
 
 fn test_signing_method_eddsa() {
 	mut h := signing_method_eddsa
+	
 	assert "EdDSA" == h.alg()
 	assert 64 == h.sign_length()
 
@@ -27,6 +28,7 @@ fn test_signing_method_eddsa() {
 
 fn test_signing_method_ed25519() {
 	mut h := signing_method_ed25519
+
 	assert "ED25519" == h.alg()
 	assert 64 == h.sign_length()
 
