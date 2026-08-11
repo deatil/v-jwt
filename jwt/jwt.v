@@ -22,6 +22,42 @@ pub const signing_method_es256k = Jwt.new[ecdsa.PrivateKey, ecdsa.PublicKey](sig
 
 pub const signing_method_none = Jwt.new[[]u8, []u8](signing_none)
 
+pub struct RegisteredHeaders {
+pub:
+	// type
+	type string @[json: 'typ'; omitempty]
+	// algorithm
+	algorithm string @[json: 'alg'; omitempty]
+	// key id
+	key_id string @[json: 'kid'; omitempty]
+	// content type
+	content_type string @[json: 'cty'; omitempty]
+}
+
+pub struct RegisteredClaims {
+pub:
+	// the `iss` (Issuer) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.1
+	issuer string @[json: 'iss'; omitempty]
+
+	// the `sub` (Subject) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2
+	subject string @[json: 'sub'; omitempty]
+
+	// the `aud` (Audience) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.3
+	audience string @[json: 'aud'; omitempty]
+
+	// the `exp` (Expiration Time) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.4
+	expires_at i64 @[json: 'exp'; omitempty]
+
+	// the `nbf` (Not Before) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.5
+	not_before i64 @[json: 'nbf'; omitempty]
+
+	// the `iat` (Issued At) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.6
+	issued_at i64 @[json: 'iat'; omitempty]
+
+	// the `jti` (JWT ID) claim. See https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.7
+	id string @[json: 'jti'; omitempty]
+}
+
 pub interface ISigner[S, V] {
 	alg() string
 	sign_length() int
@@ -85,12 +121,12 @@ pub fn (j Jwt[S, V]) parse(token_string string, verify_key V) !Token {
 
 	typ := header_map["typ"] or {""}
 	if typ.len > 0 && typ != "JWT" {
-		return error("JWT token invalid")
+		return error("JWT token type invalid")
 	}
 
 	alg := header_map["alg"] or {""}
 	if alg != j.signer.alg() {
-		return error("JWT token invalid")
+		return error("JWT token alg invalid")
 	}
 
 	signature := t.get_signature()

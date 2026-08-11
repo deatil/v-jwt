@@ -376,3 +376,47 @@ fn test_signing_method_hs256_data2() {
 
 	assert "" == claims2.get_string("userid2") or { "" }
 }
+
+fn test_signing_method_hs256_data3() {
+	mut h := signing_method_hs256
+
+	mut header := RegisteredHeaders{
+		type: "JWT"
+		algorithm: "HS256"
+	}
+
+	mut claims := RegisteredClaims{
+		issuer: "issuer"
+		subject: "subject"
+		expires_at: 1788969629
+	}
+
+    key := "test-key"
+
+	token_string := h.sign_with_header[RegisteredHeaders, RegisteredClaims](header, claims, key.bytes())!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_string, key.bytes())!
+
+	headers := parsed.get_headers_raw()
+	assert '{"typ":"JWT","alg":"HS256"}' == headers
+
+	claims2 := parsed.get_claims_raw()
+	assert '{"iss":"issuer","sub":"subject","exp":1788969629}' == claims2
+}
+
+fn test_registered_std() {
+	assert 'typ' == registered_std_headers.type
+	assert 'alg' == registered_std_headers.algorithm
+	assert 'kid' == registered_std_headers.key_id
+	assert 'cty' == registered_std_headers.content_type
+	assert 'enc' == registered_std_headers.encryption
+
+	assert 'aud' == registered_std_claims.audience
+	assert 'exp' == registered_std_claims.expiration_time
+	assert 'jti' == registered_std_claims.id
+	assert 'iat' == registered_std_claims.issued_at
+	assert 'iss' == registered_std_claims.issuer
+	assert 'nbf' == registered_std_claims.not_before
+	assert 'sub' == registered_std_claims.subject
+}
