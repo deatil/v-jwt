@@ -28,8 +28,14 @@ This library supports the parsing and verification as well as the generation and
 
 Add the dependency to your project:
 
-```sh
+```bash
 v install deatil.vjwt
+```
+
+or 
+
+```bash
+v install --git https://github.com/deatil/v-jwt
 ```
 
 The `v-jwt` structure can be imported in your application with:
