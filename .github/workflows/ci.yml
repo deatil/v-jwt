@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - uses: prantlf/setup-v-action@v4
+      - name: Setup v action
+        uses: prantlf/setup-v-action@v4
         with:
           version: 0.5.2
       - name: Test
