@@ -84,4 +84,20 @@ fn test_token() {
 	assert 1 == part_count6
 }
 
+fn test_token_from_string() {
+    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.dGVzdC1zaWduYXR1cmU"
+
+	t := Token.from_string(token_str)
+
+	header2 := t.get_headers()!
+	header21 := header2.as_map_of_strings()
+	assert "JWT" == header21["typ"]
+	assert "ES256" == header21["alg"]
+
+	claims2 := t.get_claims()!
+	claims21 := claims2.as_map_of_strings()
+	assert "example.com" == claims21["aud"]
+	assert "foo" == claims21["iat"]
+}
+
 

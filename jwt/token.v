@@ -13,6 +13,12 @@ pub fn Token.new() Token {
 	return Token{}
 }
 
+pub fn Token.from_string(token_string string) Token {
+	mut t := Token{}
+	t.parse(token_string)
+	return t
+}
+
 pub fn (mut t Token) with_header(header string) {
 	t.header = header
 }
