@@ -38,7 +38,9 @@ pub fn parse_eddsa_privatekey_der(bytes []u8) !ed25519.PrivateKey {
 	prikey_octet := fields[2].into_object[asn1.OctetString]()!
 	prikey_octet_bytes := prikey_octet.payload()!
 
-	prikey_octet2, _ := asn1.OctetString.decode(prikey_octet_bytes)!
+	elem2 := asn1.decode(prikey_octet_bytes)!
+
+	prikey_octet2 := elem2.into_object[asn1.OctetString]()!
 	parse_prikey_bytes := prikey_octet2.payload()!
 
     if parse_prikey_bytes.len != ed25519.seed_size {
