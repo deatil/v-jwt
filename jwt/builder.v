@@ -37,7 +37,7 @@ pub fn (mut b Builder[S, V]) permitted_for(value string) {
 	b.set_claim("aud", JsonAny(value))
 }
 
-pub fn (mut b Builder[S, V]) expires_at(value int) {
+pub fn (mut b Builder[S, V]) expires_at(value i64) {
 	b.set_claim("exp", JsonAny(value))
 }
 
@@ -45,7 +45,7 @@ pub fn (mut b Builder[S, V]) identified_by(value string) {
 	b.set_claim("jti", JsonAny(value))
 }
 
-pub fn (mut b Builder[S, V]) issued_at(value int) {
+pub fn (mut b Builder[S, V]) issued_at(value i64) {
 	b.set_claim("iat", JsonAny(value))
 }
 
@@ -53,7 +53,7 @@ pub fn (mut b Builder[S, V]) issued_by(value string) {
 	b.set_claim("iss", JsonAny(value))
 }
 
-pub fn (mut b Builder[S, V]) can_only_be_used_after(value int) {
+pub fn (mut b Builder[S, V]) can_only_be_used_after(value i64) {
 	b.set_claim("nbf", JsonAny(value))
 }
 

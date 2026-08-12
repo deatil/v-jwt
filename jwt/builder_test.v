@@ -11,11 +11,11 @@ fn test_signing_method_hs256_builder() {
 
 	b.set_header("ui", JsonAny("JWK"))
 	b.permitted_for("audience")
-	b.expires_at(int(exp))
+	b.expires_at(exp)
 	b.identified_by("JwtId")
-	b.issued_at(int(now.unix()))
+	b.issued_at(now.unix())
 	b.issued_by("issuer")
-	b.can_only_be_used_after(int(nbf))
+	b.can_only_be_used_after(nbf)
 	b.related_to("subject")
 	b.set_claim("userid", JsonAny("test"))
 
