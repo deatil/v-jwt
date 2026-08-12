@@ -100,4 +100,12 @@ MC4CAQAwBQYDK2VwBCIEIK3jWwBPmk1J4dynA3CjSfOLP9seazHZYZ6MCqCU+n0f
 	claims2 := parsed.get_claims()!
 	claims21 := claims2.as_map_of_strings()
 	assert "bar" == claims21["foo"]
+
+	// ======
+
+	parsed3 := h.parse(token_string, pubkey)!
+
+	claims3 := parsed3.get_claims()!
+	claims31 := claims3.as_map_of_strings()
+	assert "bar" == claims31["foo"]
 }
