@@ -7,26 +7,35 @@ import crypto.sha1
 import crypto.sha256
 import crypto.sha512
 
-type Hash = hash.Hash
-
-pub const signing_hmd5 = Hmac.new("HMD5", md5.new())
-pub const signing_hsha1 = Hmac.new("HSHA1", sha1.new())
-pub const signing_hs224 = Hmac.new("HS224", sha256.new224())
-pub const signing_hs256 = Hmac.new("HS256", sha256.new())
-pub const signing_hs384 = Hmac.new("HS384", sha512.new384())
-pub const signing_hs512 = Hmac.new("HS512", sha512.new())
-
-pub struct Hmac {
-	name string
-mut:
-	hash Hash
+pub const signing_hmd5 = Hmac{
+	name: "HMD5"
+	hash: md5.new()
+}
+pub const signing_hsha1 = Hmac{
+	name: "HSHA1"
+	hash: sha1.new()
+}
+pub const signing_hs224 = Hmac{
+	name: "HS224"
+	hash: sha256.new224()
+}
+pub const signing_hs256 = Hmac{
+	name: "HS256"
+	hash: sha256.new()
+}
+pub const signing_hs384 = Hmac{
+	name: "HS384"
+	hash: sha512.new384()
+}
+pub const signing_hs512 = Hmac{
+	name: "HS512"
+	hash: sha512.new()
 }
 
-pub fn Hmac.new(name string, h Hash) Hmac {
-	return Hmac{
-		name, 
-		h,
-	}
+pub struct Hmac {
+pub:
+	name string
+	hash &hash.Hash = unsafe { nil }
 }
 
 pub fn (h Hmac) alg() string {

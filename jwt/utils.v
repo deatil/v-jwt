@@ -14,7 +14,7 @@ pub fn base64_url_decode(data string) string {
 }
 
 pub fn json_encode[T](val T) string {
-	return json2.encode(val)
+	return json2.encode[T](val)
 }
 
 pub fn json_decode[T](s string) !T {

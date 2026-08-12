@@ -236,6 +236,27 @@ fn test_signing_method_hs512_check() {
 	assert "joe" == claims21["iss"]
 }
 
+fn test_signing_method_none_check() {
+    key_bytes := "".bytes()
+    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ."
+
+	mut h := signing_method_none
+
+	mut claims := map[string]JsonAny{}
+	claims["iss"] = JsonAny("joe")
+	claims["exp"] = JsonAny(1300819380)
+	claims["http://example.com/is_root"] = JsonAny(true)
+
+	token_string := h.sign[map[string]JsonAny](claims, key_bytes)!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_str, key_bytes)!
+
+	claims2 := parsed.get_claims()!
+	claims21 := claims2.as_map_of_strings()
+	assert "joe" == claims21["iss"]
+}
+
 fn test_signing_method_blake2b() {
 	mut h := signing_method_blake2b
 
@@ -403,6 +424,57 @@ fn test_signing_method_hs256_data3() {
 
 	claims2 := parsed.get_claims_raw()
 	assert '{"iss":"issuer","sub":"subject","exp":1788969629}' == claims2
+}
+
+fn test_signing_method_hs256_data5() {
+	mut h := signing_method_hs256
+
+	mut header := RegisteredHeaders{
+		type: "JWT"
+		algorithm: "HS256"
+	}
+
+	mut claims := RegisteredClaims{
+		issuer: "issuer"
+		subject: "subject"
+		expires_at: 1788969629
+	}
+
+    key := "test-key"
+
+	token_string := h.sign_with_header(header, claims, key.bytes())!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_string, key.bytes())!
+
+	headers := parsed.get_headers_raw()
+	assert '{"typ":"JWT","alg":"HS256"}' == headers
+
+	claims2 := parsed.get_claims_raw()
+	assert '{"iss":"issuer","sub":"subject","exp":1788969629}' == claims2
+}
+
+fn test_signing_method_hs256_data6() {
+	mut h := signing_method_hs256
+
+	mut claims := map[string]string{}
+	claims["aud"] = "example.com"
+	claims["iat"] = "foo"
+
+    key := "test-key"
+
+	token_string := h.sign(claims, key.bytes())!
+	assert token_string.len > 0
+
+	parsed := h.parse(token_string, key.bytes())!
+
+	headers := parsed.get_header()!
+	assert "JWT" == headers.get_type()?
+	assert "HS256" == headers.get_algorithm()?
+
+	claims2 := parsed.get_claim()!
+	assert "example.com" == claims2.get_audience()?
+	assert "foo" == claims2.get_string("iat")?
 }
 
 fn test_registered_std() {

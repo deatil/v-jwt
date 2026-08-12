@@ -136,7 +136,7 @@ pub fn (t Token) get_claims() !JsonAny {
 	return json_decode[JsonAny](t.claims)
 }
 
-pub fn (t Token) get_claimss_t[T]() !T {
+pub fn (t Token) get_claims_t[T]() !T {
 	return json_decode[T](t.claims)
 }
 
@@ -191,7 +191,7 @@ pub struct ClaimsData {
 }
 
 pub fn ClaimsData.new(token Token) !ClaimsData {
-	claims := token.get_claimss_t[map[string]JsonAny]()!
+	claims := token.get_claims_t[map[string]JsonAny]()!
 
 	return ClaimsData{
 		claims: claims 

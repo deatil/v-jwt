@@ -29,6 +29,7 @@ pub const signing_es256k = ECDSA{
 }
 
 pub struct ECDSA {
+pub:
 	name     string
 	hash     &hash.Hash = unsafe { nil }
 	key_size int

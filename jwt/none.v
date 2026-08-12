@@ -1,15 +1,12 @@
 module jwt
 
-pub const signing_none = None.new("none")
-
-pub struct None {
-	name string
+pub const signing_none = None{
+	name: "none"
 }
 
-pub fn None.new(name string) None {
-	return None{
-		name, 
-	}
+pub struct None {
+pub:
+	name string
 }
 
 pub fn (n None) alg() string {

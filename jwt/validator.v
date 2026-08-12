@@ -7,7 +7,7 @@ mut:
 }
 
 pub fn Validator.new(token Token) Validator {
-	claims := token.get_claimss_t[map[string]JsonAny]() or { map[string]JsonAny{} }
+	claims := token.get_claims_t[map[string]JsonAny]() or { map[string]JsonAny{} }
 
 	return Validator{
 		claims: claims

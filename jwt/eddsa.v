@@ -2,17 +2,16 @@ module jwt
 
 import crypto.ed25519
 
-pub const signing_eddsa = EdDSA.new("EdDSA")
-pub const signing_ed25519 = EdDSA.new("ED25519")
-
-pub struct EdDSA {
-	name string
+pub const signing_eddsa = EdDSA{
+	name: "EdDSA"
+}
+pub const signing_ed25519 = EdDSA{
+	name: "ED25519"
 }
 
-pub fn EdDSA.new(name string) EdDSA {
-	return EdDSA{
-		name, 
-	}
+pub struct EdDSA {
+pub:
+	name string
 }
 
 pub fn (e EdDSA) alg() string {

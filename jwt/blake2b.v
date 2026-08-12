@@ -3,16 +3,13 @@ module jwt
 import crypto.hmac
 import crypto.blake2b
 
-pub const signing_blake2b = Blake2b.new("BLAKE2B")
-
-pub struct Blake2b {
-	name string
+pub const signing_blake2b = Blake2b{
+	name: "BLAKE2B"
 }
 
-pub fn Blake2b.new(name string) Blake2b {
-	return Blake2b{
-		name, 
-	}
+pub struct Blake2b {
+pub:
+	name string
 }
 
 pub fn (b Blake2b) alg() string {
