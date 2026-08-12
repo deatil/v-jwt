@@ -60,7 +60,7 @@ fn main() {
     key := "test-key"
 
 	mut s := jwt.signing_method_hs256
-	token_string := s.sign[map[string]string](claims, key.bytes())!
+	token_string := s.sign(claims, key.bytes())!
     
     // output: 
     // make jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.50cze1sslhuKh5-sXLoMOjVj6PmOBR9QGJyqzugBiig

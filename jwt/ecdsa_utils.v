@@ -1,6 +1,15 @@
 module jwt
 
+import crypto.ecdsa
 import x.encoding.asn1
+
+pub fn parse_ecdsa_privatekey_pem(str string) !ecdsa.PrivateKey {
+	return ecdsa.privkey_from_string(str)
+}
+
+pub fn parse_ecdsa_publickey_pem(str string) !ecdsa.PublicKey {
+	return ecdsa.pubkey_from_string(str)
+}
 
 struct SigData {
 	r asn1.Integer

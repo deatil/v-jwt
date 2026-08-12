@@ -105,8 +105,8 @@ nvtkDskL
 -----END PRIVATE KEY-----'
 	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJmb28iOiJiYXIifQ.WDolEPRIhE9t5azDM_iepn9ezk0dIuExOKFYFAdVS1QC3iOyWM__4ZEAiLgCkGuaPo0ftVQCsCYItjKgVZHgGQ"
 
-	prikey := ecdsa.privkey_from_string(pri_key)!
-	pubkey := ecdsa.pubkey_from_string(pub_key)!
+	prikey := parse_ecdsa_privatekey_pem(pri_key)!
+	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
 	mut h := signing_method_es256
 
@@ -141,8 +141,8 @@ A3s=
 -----END PRIVATE KEY-----'
 	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzM4NCJ9.eyJmb28iOiJiYXIifQ.GeAljd7NH1LQ363xqAb7G608EvXX3svYTMwjcmEVnTapGF7Y4puGIVW4TeXsMij9646Gi_HJ3ghAqgHvWh5CMyvQFOQThyVy7CVxhtrn3GFgse1Kz8wOd0_X_XtOvCsF"
 
-	prikey := ecdsa.privkey_from_string(pri_key)!
-	pubkey := ecdsa.pubkey_from_string(pub_key)!
+	prikey := parse_ecdsa_privatekey_pem(pri_key)!
+	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
 	mut h := signing_method_es384
 
@@ -179,8 +179,8 @@ QQwS8iecuQQq8g==
 -----END PRIVATE KEY-----'
 	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzUxMiJ9.eyJmb28iOiJiYXIifQ.AdHc_BALB2aBPnEl0FLQtOLgJLqmbxgF9npNd19TZTYwqHmZZ0_eizbagmjJVxpImzXSi-DYezLQDbwN_4iJrvlxAILX9SSrsHh0zbkJAjMAIJDMkZ7nfR7KgCNqvyT7JgEN41i6juk1n8uP3edFptYa1QxnLEG4v6_-NJdOl1xQVtZA"
 
-	prikey := ecdsa.privkey_from_string(pri_key)!
-	pubkey := ecdsa.pubkey_from_string(pub_key)!
+	prikey := parse_ecdsa_privatekey_pem(pri_key)!
+	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
 	mut h := signing_method_es512
 
@@ -212,8 +212,8 @@ LVHybh2SeDu0d7s36xQtXYS2HoDERdB934Tie5x5HbVQ0K9AqrGJjALNXAgpwd78
 -----END PRIVATE KEY-----'
 	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NksifQ.eyJmb28iOiJiYXIifQ.Xe92dmU8MrI1d4edE2LEKqSmObZJpkIuz0fERihfn65ikTeeX5zjpyAdlHy9ZSBX8N8sqmJy5fxBTBzV26WvIQ"
 
-	prikey := ecdsa.privkey_from_string(pri_key)!
-	pubkey := ecdsa.pubkey_from_string(pub_key)!
+	prikey := parse_ecdsa_privatekey_pem(pri_key)!
+	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
 	mut h := signing_method_es256k
 
