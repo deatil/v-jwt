@@ -53,14 +53,14 @@ module main
 import deatil.vjwt.jwt
 
 fn main() {
-	mut claims := map[string]string{}
-	claims["aud"] = "example.com"
-	claims["iat"] = "foo"
+    mut claims := map[string]string{}
+    claims["aud"] = "example.com"
+    claims["iat"] = "foo"
 
     key := "test-key"
 
-	mut s := jwt.signing_method_hs256.new()
-	token_string := s.sign(claims, key.bytes())!
+    mut s := jwt.signing_method_hs256.new()
+    token_string := s.sign(claims, key.bytes())!
     
     // output: 
     // make jwt: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.50cze1sslhuKh5-sXLoMOjVj6PmOBR9QGJyqzugBiig
@@ -68,13 +68,13 @@ fn main() {
 
     // =========
 
-	mut p := jwt.signing_method_hs256.new()
-	parsed := p.parse(token_string, key.bytes())!
+    mut p := jwt.signing_method_hs256.new()
+    parsed := p.parse(token_string, key.bytes())!
     
     // output: 
     // claims aud: example.com
-	claims2 := parsed.get_claims()!
-	claims21 := claims2.as_map_of_strings()
+    claims2 := parsed.get_claims()!
+    claims21 := claims2.as_map_of_strings()
     println("claims aud: ${claims21["aud"]}")
 }
 ~~~
@@ -91,9 +91,9 @@ import deatil.vjwt.jwt
 fn main() {
     token_string := "eyJ0eXAiOiJKV0UiLCJhbGciOiJFUzI1NiIsImtpZCI6ImtpZHMifQ.eyJpc3MiOiJpc3MiLCJpYXQiOjE1Njc4NDIzODgsImV4cCI6MTc2Nzg0MjM4OCwiYXVkIjoiZXhhbXBsZS5jb20iLCJzdWIiOiJzdWIiLCJqdGkiOiJqdGkgcnJyIiwibmJmIjoxNTY3ODQyMzg4fQ.dGVzdC1zaWduYXR1cmU"
 
-	token := jwt.Token.from_string(token_string)
+    token := jwt.Token.from_string(token_string)
 
-	validator := jwt.Validator.new(token)
+    validator := jwt.Validator.new(token)
 
     // validator.with_leeway(3);
 
