@@ -8,7 +8,7 @@ fn test_parse_func() {
 
 	key_bytes := hex.decode(key)!
 
-	parsed := parse[[]u8](signing_method_blake2b, token_str, key_bytes)!
+	parsed := parse[[]u8](signing_method_blake2b.new(), token_str, key_bytes)!
 
 	claims2 := parsed.get_claims()!
 	claims21 := claims2.as_map_of_strings()

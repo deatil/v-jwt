@@ -3,7 +3,7 @@ module jwt
 import crypto.ecdsa
 
 fn test_signing_method_es256() {
-	mut h := signing_method_es256
+	mut h := signing_method_es256.new()
 	assert "ES256" == h.alg()
 	assert 64 == h.sign_length()
 
@@ -25,7 +25,7 @@ fn test_signing_method_es256() {
 }
 
 fn test_signing_method_es384() {
-	mut h := signing_method_es384
+	mut h := signing_method_es384.new()
 
 	assert "ES384" == h.alg()
 	assert 96 == h.sign_length()
@@ -48,7 +48,7 @@ fn test_signing_method_es384() {
 }
 
 fn test_signing_method_es512() {
-	mut h := signing_method_es512
+	mut h := signing_method_es512.new()
 
 	assert "ES512" == h.alg()
 	assert 132 == h.sign_length()
@@ -71,7 +71,8 @@ fn test_signing_method_es512() {
 }
 
 fn test_signing_method_es256k() {
-	mut h := signing_method_es256k
+	mut h := signing_method_es256k.new()
+	
 	assert "ES256K" == h.alg()
 	assert 64 == h.sign_length()
 
@@ -108,7 +109,7 @@ nvtkDskL
 	prikey := parse_ecdsa_privatekey_pem(pri_key)!
 	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
-	mut h := signing_method_es256
+	mut h := signing_method_es256.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")
@@ -144,7 +145,7 @@ A3s=
 	prikey := parse_ecdsa_privatekey_pem(pri_key)!
 	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
-	mut h := signing_method_es384
+	mut h := signing_method_es384.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")
@@ -182,7 +183,7 @@ QQwS8iecuQQq8g==
 	prikey := parse_ecdsa_privatekey_pem(pri_key)!
 	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
-	mut h := signing_method_es512
+	mut h := signing_method_es512.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")
@@ -215,7 +216,7 @@ LVHybh2SeDu0d7s36xQtXYS2HoDERdB934Tie5x5HbVQ0K9AqrGJjALNXAgpwd78
 	prikey := parse_ecdsa_privatekey_pem(pri_key)!
 	pubkey := parse_ecdsa_publickey_pem(pub_key)!
 
-	mut h := signing_method_es256k
+	mut h := signing_method_es256k.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")

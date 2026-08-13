@@ -34,24 +34,34 @@ pub struct Jwt[S, V] {
 }
 
 pub fn Jwt.new[S, V](signer ISigner[S, V]) Jwt[S, V] {
-	return Jwt{
+	return Jwt[S, V]{
 		signer, 
 	}
 }
 
-pub fn (j Jwt[S, V]) get_signer() ISigner[S, V] {
+pub fn (j Jwt[S, V]) new() Jwter[S, V] {
+	return Jwter[S, V]{
+		signer: j.signer
+	}
+}
+
+pub struct Jwter[S, V] {
+	signer ISigner[S, V]
+}
+
+pub fn (j Jwter[S, V]) get_signer() ISigner[S, V] {
 	return j.signer
 }
 
-pub fn (j Jwt[S, V]) alg() string {
+pub fn (j Jwter[S, V]) alg() string {
 	return j.signer.alg()
 }
 
-pub fn (j Jwt[S, V]) sign_length() int {
+pub fn (j Jwter[S, V]) sign_length() int {
 	return j.signer.sign_length()
 }
 
-pub fn (j Jwt[S, V]) sign[T](claims T, sign_key S) !string {
+pub fn (j Jwter[S, V]) sign[T](claims T, sign_key S) !string {
 	mut header := map[string]string{}
 	header["typ"] = "JWT"
 	header["alg"] = j.signer.alg()
@@ -59,7 +69,7 @@ pub fn (j Jwt[S, V]) sign[T](claims T, sign_key S) !string {
 	return j.sign_with_header[map[string]string, T](header, claims, sign_key);
 }
 
-pub fn (j Jwt[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !string {
+pub fn (j Jwter[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !string {
     mut t := Token.new()
     t.set_header[A](header)
     t.set_claims[B](claims)
@@ -72,7 +82,7 @@ pub fn (j Jwt[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !str
 	return t.signed_string()
 }
 
-pub fn (j Jwt[S, V]) parse(token_string string, verify_key V) !Token {
+pub fn (j Jwter[S, V]) parse(token_string string, verify_key V) !Token {
 	mut t := Token.new()
 	t.parse(token_string)
 
@@ -104,6 +114,6 @@ pub fn (j Jwt[S, V]) parse(token_string string, verify_key V) !Token {
 	return t
 }
 
-pub fn (j Jwt[S, V]) build() Builder[S] {
+pub fn (j Jwter[S, V]) build() Builder[S] {
 	return Builder.new[S, V](j.signer)
 }

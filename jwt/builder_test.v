@@ -7,7 +7,7 @@ fn test_signing_method_hs256_builder() {
 	exp := now.add_days(30).unix()
 	nbf := now.add_seconds(60).unix()
 
-	mut b := signing_method_hs256.build()
+	mut b := signing_method_hs256.new().build()
 
 	b.set_header("ui", JsonAny("JWK"))
 	b.permitted_for("audience")
@@ -26,7 +26,7 @@ fn test_signing_method_hs256_builder() {
 	token_string := token.signed_string()
 	assert token_string.len > 0
 
-	mut p := signing_method_hs256
+	mut p := signing_method_hs256.new()
 	parsed := p.parse(token_string, key.bytes())!
 
 	headers := parsed.get_headers_raw()
@@ -43,7 +43,7 @@ fn test_signing_method_hs256_builder2() {
 	exp := 1788969629
 	nbf := 1786377689
 
-	mut b := signing_method_hs256.build()
+	mut b := signing_method_hs256.new().build()
 
 	b.set_header("ui", JsonAny("JWK"))
 	b.permitted_for("audience")
@@ -62,7 +62,7 @@ fn test_signing_method_hs256_builder2() {
 	token_string := token.signed_string()
 	assert token_string.len > 0
 
-	mut p := signing_method_hs256
+	mut p := signing_method_hs256.new()
 	parsed := p.parse(token_string, key.bytes())!
 
 	headers := parsed.get_headers_raw()

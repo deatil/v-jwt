@@ -4,7 +4,7 @@ import encoding.hex
 import crypto.ed25519
 
 fn test_signing_method_eddsa() {
-	mut h := signing_method_eddsa
+	mut h := signing_method_eddsa.new()
 	
 	assert "EdDSA" == h.alg()
 	assert 64 == h.sign_length()
@@ -27,7 +27,7 @@ fn test_signing_method_eddsa() {
 }
 
 fn test_signing_method_ed25519() {
-	mut h := signing_method_ed25519
+	mut h := signing_method_ed25519.new()
 
 	assert "ED25519" == h.alg()
 	assert 64 == h.sign_length()
@@ -60,7 +60,7 @@ fn test_signing_method_eddsa_check() {
 	prikey := ed25519.new_key_from_seed(pri_key_buf)
 	pubkey := ed25519.PublicKey(pub_key_buf)
 
-	mut h := signing_method_ed25519
+	mut h := signing_method_ed25519.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")
@@ -87,7 +87,7 @@ MC4CAQAwBQYDK2VwBCIEIK3jWwBPmk1J4dynA3CjSfOLP9seazHZYZ6MCqCU+n0f
 	prikey := parse_eddsa_privatekey_pem(pri_key)!
 	pubkey := parse_eddsa_publickey_pem(pub_key)!
 
-	mut h := signing_method_eddsa
+	mut h := signing_method_eddsa.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["foo"] = JsonAny("bar")

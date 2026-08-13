@@ -3,7 +3,7 @@ module jwt
 import encoding.hex
 
 fn test_signing_method_hs256() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	assert "HS256" == h.alg()
 	assert 32 == h.sign_length()
@@ -30,7 +30,7 @@ fn test_signing_method_hs256() {
 }
 
 fn test_signing_method_hs384() {
-	mut h := signing_method_hs384
+	mut h := signing_method_hs384.new()
 
 	assert "HS384" == h.alg()
 	assert 48 == h.sign_length()
@@ -53,7 +53,7 @@ fn test_signing_method_hs384() {
 }
 
 fn test_signing_method_hs512() {
-	mut h := signing_method_hs512
+	mut h := signing_method_hs512.new()
 
 	assert "HS512" == h.alg()
 	assert 64 == h.sign_length()
@@ -76,7 +76,7 @@ fn test_signing_method_hs512() {
 }
 
 fn test_signing_method_hs224() {
-	mut h := signing_method_hs224
+	mut h := signing_method_hs224.new()
 
 	assert "HS224" == h.alg()
 	assert 28 == h.sign_length()
@@ -99,7 +99,7 @@ fn test_signing_method_hs224() {
 }
 
 fn test_signing_method_hsha1() {
-	mut h := signing_method_hsha1
+	mut h := signing_method_hsha1.new()
 
 	assert "HSHA1" == h.alg()
 	assert 20 == h.sign_length()
@@ -122,7 +122,7 @@ fn test_signing_method_hsha1() {
 }
 
 fn test_signing_method_hmd5() {
-	mut h := signing_method_hmd5
+	mut h := signing_method_hmd5.new()
 
 	assert "HMD5" == h.alg()
 	assert 16 == h.sign_length()
@@ -145,7 +145,7 @@ fn test_signing_method_hmd5() {
 }
 
 fn test_signing_method_none() {
-	mut h := signing_method_none
+	mut h := signing_method_none.new()
 
 	assert "none" == h.alg()
 	assert 0 == h.sign_length()
@@ -173,7 +173,7 @@ fn test_signing_method_hs256_check() {
 
 	key_bytes := hex.decode(key)!
 
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["iss"] = JsonAny("joe")
@@ -196,7 +196,7 @@ fn test_signing_method_hs384_check() {
 
 	key_bytes := hex.decode(key)!
 
-	mut h := signing_method_hs384
+	mut h := signing_method_hs384.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["iss"] = JsonAny("joe")
@@ -219,7 +219,7 @@ fn test_signing_method_hs512_check() {
 
 	key_bytes := hex.decode(key)!
 
-	mut h := signing_method_hs512
+	mut h := signing_method_hs512.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["iss"] = JsonAny("joe")
@@ -240,7 +240,7 @@ fn test_signing_method_none_check() {
     key_bytes := "".bytes()
     token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ."
 
-	mut h := signing_method_none
+	mut h := signing_method_none.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["iss"] = JsonAny("joe")
@@ -258,7 +258,7 @@ fn test_signing_method_none_check() {
 }
 
 fn test_signing_method_blake2b() {
-	mut h := signing_method_blake2b
+	mut h := signing_method_blake2b.new()
 
 	assert "BLAKE2B" == h.alg()
 	assert 32 == h.sign_length()
@@ -286,7 +286,7 @@ fn test_signing_method_blake2b_check() {
 
 	key_bytes := hex.decode(key)!
 
-	mut h := signing_method_blake2b
+	mut h := signing_method_blake2b.new()
 
 	mut claims := map[string]JsonAny{}
 	claims["iss"] = JsonAny("joe")
@@ -309,7 +309,7 @@ fn test_signing_method_blake2b_check_fail() {
 
 	key_bytes := hex.decode(key)!
 
-	mut h := signing_method_blake2b
+	mut h := signing_method_blake2b.new()
 
 	mut need_err := false
 	h.parse(token_str, key_bytes) or {
@@ -321,7 +321,7 @@ fn test_signing_method_blake2b_check_fail() {
 }
 
 fn test_signing_method_hs256_data() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut claims := map[string]string{}
 	claims["aud"] = "example.com"
@@ -344,7 +344,7 @@ fn test_signing_method_hs256_data() {
 }
 
 fn test_signing_method_hs256_data2() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut header := map[string]string{}
 	header["typ"] = "JWT"
@@ -399,7 +399,7 @@ fn test_signing_method_hs256_data2() {
 }
 
 fn test_signing_method_hs256_data3() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut header := RegisteredHeaders{
 		type: "JWT"
@@ -427,7 +427,7 @@ fn test_signing_method_hs256_data3() {
 }
 
 fn test_signing_method_hs256_data5() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut header := RegisteredHeaders{
 		type: "JWT"
@@ -455,7 +455,7 @@ fn test_signing_method_hs256_data5() {
 }
 
 fn test_signing_method_hs256_data6() {
-	mut h := signing_method_hs256
+	mut h := signing_method_hs256.new()
 
 	mut claims := map[string]string{}
 	claims["aud"] = "example.com"

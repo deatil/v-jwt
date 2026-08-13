@@ -38,7 +38,7 @@ or
 v install --git https://github.com/deatil/v-jwt
 ```
 
-The `v-jwt` structure can be imported in your application with:
+The `v-jwt` can be imported in your application with:
 
 ```v
 import deatil.vjwt.jwt
@@ -59,7 +59,7 @@ fn main() {
 
     key := "test-key"
 
-	mut s := jwt.signing_method_hs256
+	mut s := jwt.signing_method_hs256.new()
 	token_string := s.sign(claims, key.bytes())!
     
     // output: 
@@ -68,7 +68,7 @@ fn main() {
 
     // =========
 
-	mut p := jwt.signing_method_hs256
+	mut p := jwt.signing_method_hs256.new()
 	parsed := p.parse(token_string, key.bytes())!
     
     // output: 
@@ -91,8 +91,7 @@ import deatil.vjwt.jwt
 fn main() {
     token_string := "eyJ0eXAiOiJKV0UiLCJhbGciOiJFUzI1NiIsImtpZCI6ImtpZHMifQ.eyJpc3MiOiJpc3MiLCJpYXQiOjE1Njc4NDIzODgsImV4cCI6MTc2Nzg0MjM4OCwiYXVkIjoiZXhhbXBsZS5jb20iLCJzdWIiOiJzdWIiLCJqdGkiOiJqdGkgcnJyIiwibmJmIjoxNTY3ODQyMzg4fQ.dGVzdC1zaWduYXR1cmU"
 
-	mut token := jwt.Token.new()
-	token.parse(check1)
+	token := jwt.Token.from_string(token_string)
 
 	validator := jwt.Validator.new(token)
 
