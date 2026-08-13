@@ -5,14 +5,14 @@ import crypto.ed25519
 import x.encoding.asn1
 
 pub fn parse_eddsa_privatekey_pem(str string) !ed25519.PrivateKey {
-	bytes, _ := pem.decode(str) or {pem.Block{}, ""}
-	key := parse_eddsa_privatekey_der(bytes.data)!
+	block, _ := pem.decode(str) or {pem.Block{}, ""}
+	key := parse_eddsa_privatekey_der(block.data)!
 	return key
 }
 
 pub fn parse_eddsa_publickey_pem(str string) !ed25519.PublicKey {
-	bytes, _ := pem.decode(str) or {pem.Block{}, ""}
-	key := parse_eddsa_publickey_der(bytes.data)!
+	block, _ := pem.decode(str) or {pem.Block{}, ""}
+	key := parse_eddsa_publickey_der(block.data)!
 	return key
 }
 

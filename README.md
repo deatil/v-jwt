@@ -140,6 +140,38 @@ The JWT library have signing methods:
  - `none`: jwt.signing_method_none
 
 
+### Sign PublicKey
+
+ECDSA PublicKey:
+~~~v
+import crypto.ecdsa
+import deatil.vjwt.jwt
+
+// generate public key
+pubkey, prikey := ecdsa.generate_key(nid: .prime256v1)! // p256 PublicKey
+pubkey, prikey := ecdsa.generate_key(nid: .secp384r1)! // p384 PublicKey
+pubkey, prikey := ecdsa.generate_key(nid: .secp521r1)! // p521 PublicKey
+pubkey, prikey := ecdsa.generate_key(nid: .secp256k1)! // s256k1 PublicKey
+
+// from key pem
+prikey := jwt.parse_ecdsa_privatekey_pem(pri_key_pem_str)!
+pubkey := jwt.parse_ecdsa_publickey_pem(pub_key_pem_str)!
+~~~
+
+EdDSA PublicKey:
+~~~v
+import crypto.ed25519
+import deatil.vjwt.jwt
+
+// generate public key
+pubkey, prikey := ed25519.generate_key()!
+
+// from key pem
+prikey := jwt.parse_eddsa_privatekey_pem(pri_key_pem_str)!
+pubkey := jwt.parse_eddsa_publickey_pem(pub_key_pem_str)!
+~~~
+
+
 ### LICENSE
 
 *  The library LICENSE is `Apache2`, using the library need keep the LICENSE.
