@@ -26,9 +26,7 @@ pub fn (b Blake2b) sign(msg []u8, key []u8) ![]u8 {
 	}
 
 	mut d := blake2b.new_pmac256(key)!
-	d.write(msg) or { 
-		return err
-	}
+	d.write(msg)!
 	return d.checksum()
 }
 
@@ -38,9 +36,7 @@ pub fn (b Blake2b) verify(msg []u8, signature []u8, key []u8) !bool {
 	}
 
 	mut d := blake2b.new_pmac256(key)!
-	d.write(msg) or { 
-		return err
-	}
+	d.write(msg)!
 	hres := d.checksum()
 
 	return hmac.equal(hres, signature)

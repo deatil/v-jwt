@@ -52,7 +52,7 @@ pub fn (h Hmac) sign(msg []u8, key []u8) ![]u8 {
 	hres := hmac.new(key, msg, fn [h] (msg []u8) []u8 {
 		mut d := h.hash
 		d.reset()
-		d.write(msg) or { panic(err) }
+		d.write(msg) or { return [] }
 		return d.sum([])
 	}, h2.block_size())
 	return hres
@@ -63,7 +63,7 @@ pub fn (h Hmac) verify(msg []u8, signature []u8, key []u8) !bool {
 	hres := hmac.new(key, msg, fn [h] (msg []u8) []u8 {
 		mut d := h.hash
 		d.reset()
-		d.write(msg) or { panic(err) }
+		d.write(msg) or { return [] }
 		return d.sum([])
 	}, h2.block_size())
 	return hmac.equal(hres, signature)
