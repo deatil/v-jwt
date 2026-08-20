@@ -25,9 +25,9 @@ pub fn parse_eddsa_privatekey_der(bytes []u8) !ed25519.PrivateKey {
 
 	ver := fields[0].into_object[asn1.Integer]()!
 	version := ver.as_i64()!
-    if version != 0 {
-        return error("JWT EdDSA PKCS8 Version Error")
-    }
+	if version != 0 {
+		return error("JWT EdDSA PKCS8 Version Error")
+	}
 
 	oid_seq := fields[1].into_object[asn1.Sequence]()!
 	oid_seq_fields := oid_seq.fields()
@@ -43,9 +43,9 @@ pub fn parse_eddsa_privatekey_der(bytes []u8) !ed25519.PrivateKey {
 	prikey_octet2 := elem2.into_object[asn1.OctetString]()!
 	parse_prikey_bytes := prikey_octet2.payload()!
 
-    if parse_prikey_bytes.len != ed25519.seed_size {
-        return error("JWT EdDSA Private Key Bytes Length Error")
-    }
+	if parse_prikey_bytes.len != ed25519.seed_size {
+		return error("JWT EdDSA Private Key Bytes Length Error")
+	}
 
 	prikey := ed25519.new_key_from_seed(parse_prikey_bytes)
 	return prikey
@@ -67,9 +67,9 @@ pub fn parse_eddsa_publickey_der(bytes []u8) !ed25519.PublicKey {
 	pubkey_bitstring := fields[1].into_object[asn1.BitString]()!
 	pubkey_bytes := pubkey_bitstring.data()
 
-    if pubkey_bytes.len != ed25519.public_key_size {
-        return error("JWT EdDSA Public Key Bytes Length Error")
-    }
+	if pubkey_bytes.len != ed25519.public_key_size {
+		return error("JWT EdDSA Public Key Bytes Length Error")
+	}
 
 	pubkey := ed25519.PublicKey(pubkey_bytes)
 	return pubkey

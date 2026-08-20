@@ -6,9 +6,9 @@ fn test_none() {
 	assert "none" == h.alg()
 	assert 0 == h.sign_length()
 
-    msg := "test-data"
-    key := ""
-    sign := ""
+	msg := "test-data"
+	key := ""
+	sign := ""
 
 	signed := h.sign(msg.bytes(), key.bytes())!
 	assert signed.hex() == sign

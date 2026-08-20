@@ -11,7 +11,7 @@ fn test_es256() {
 
 	pubkey, prikey := ecdsa.generate_key(nid: .prime256v1)!
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -32,7 +32,7 @@ fn test_es384() {
 
 	pubkey, prikey := ecdsa.generate_key(nid: .secp384r1)!
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -53,7 +53,7 @@ fn test_es512() {
 
 	pubkey, prikey := ecdsa.generate_key(nid: .secp521r1)!
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -74,7 +74,7 @@ fn test_es256k() {
 
 	pubkey, prikey := ecdsa.generate_key(nid: .secp256k1)!
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -88,11 +88,11 @@ fn test_es256k() {
 }
 
 fn test_es256_check() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETpIfMi7oTcpgtbeQ0kulzYlAKLQS
 t1pfOGUHtHvce8MEssueOxCHWJKql/sJ+JrJSfqOu5AWlDqGqp77ZA7JCw==
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/DkEwUlK8nWyB30J
 RyxjU42bu//wSrGj2szLE/ybKMqgCgYIKoZIzj0DAQehRANCAAROkh8yLuhNymC1
 t5DSS6XNiUAotBK3Wl84ZQe0e9x7wwSyy547EIdYkqqX+wn4mslJ+o67kBaUOoaq
@@ -104,7 +104,7 @@ nvtkDskL
 
 	mut h := signing_es256
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -123,7 +123,7 @@ nvtkDskL
 }
 
 fn test_es256_check_fail() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETpIfMi7oTcpgtbeQ0kulzYlAKLQS
 t1pfOGUHtHvce8MEssueOxCHWJKql/sJ+JrJSfqOu5AWlDqGqp77ZA7JCw==
 -----END PUBLIC KEY-----'
@@ -132,7 +132,7 @@ t1pfOGUHtHvce8MEssueOxCHWJKql/sJ+JrJSfqOu5AWlDqGqp77ZA7JCw==
 
 	mut h := signing_es256
 
-    msg := "test-data"
+	msg := "test-data"
 	signed := "c732644e4fa95675537d5060011db49bfc28bcacf5482af09089bfbfb2fd60c4117589c5b786b31976d8e006e2d3d479e9aca297dda0b5d3df13b2"
 
 	signed_bytes := hex.decode(signed)!

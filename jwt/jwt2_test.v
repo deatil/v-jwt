@@ -50,9 +50,9 @@ fn test_signing_method_ed25519() {
 }
 
 fn test_signing_method_eddsa_check() {
-    pub_key := "587ef3ea1a58aaf3e7b368b89fdcb29b0bc1dc03e18b82f243b887393e9caed1"
-    pri_key := "414c119ae6958c5ccd7285c4894dbcd191e4942f0e14e42e8bc9631c10777b9a"
-    token_str := "eyJhbGciOiJFRDI1NTE5IiwidHlwIjoiSldUIn0.eyJmb28iOiJiYXIifQ.ESuVzZq1cECrt9Od_gLPVG-_6uRP_8Nq-ajx6CtmlDqRJZqdejro2ilkqaQgSL-siE_3JMTUW7UwAorLaTyFCw"
+	pub_key := "587ef3ea1a58aaf3e7b368b89fdcb29b0bc1dc03e18b82f243b887393e9caed1"
+	pri_key := "414c119ae6958c5ccd7285c4894dbcd191e4942f0e14e42e8bc9631c10777b9a"
+	token_str := "eyJhbGciOiJFRDI1NTE5IiwidHlwIjoiSldUIn0.eyJmb28iOiJiYXIifQ.ESuVzZq1cECrt9Od_gLPVG-_6uRP_8Nq-ajx6CtmlDqRJZqdejro2ilkqaQgSL-siE_3JMTUW7UwAorLaTyFCw"
 
 	pri_key_buf := hex.decode(pri_key)!
 	pub_key_buf := hex.decode(pub_key)!
@@ -76,10 +76,10 @@ fn test_signing_method_eddsa_check() {
 }
 
 fn test_signing_method_eddsa_check_with_pem_key() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MCowBQYDK2VwAyEAj/CWF9RnNKe/L0jHWHpUICXDowaNYLbj7Ck/wdzTvE4=
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MC4CAQAwBQYDK2VwBCIEIK3jWwBPmk1J4dynA3CjSfOLP9seazHZYZ6MCqCU+n0f
 -----END PRIVATE KEY-----'
 	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSJ9.eyJmb28iOiJiYXIifQ.AMI_8S4nuqBQ8Y7MLrU_iyDXDJcd651Y7eDR3AO98tfDGKkkp2MJj-yQoZzdbjeYrl3ocotlmor3Otwf1PUbCQ"

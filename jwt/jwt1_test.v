@@ -12,7 +12,7 @@ fn test_signing_method_hs256() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -39,7 +39,7 @@ fn test_signing_method_hs384() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -62,7 +62,7 @@ fn test_signing_method_hs512() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -85,7 +85,7 @@ fn test_signing_method_hs224() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -108,7 +108,7 @@ fn test_signing_method_hsha1() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -131,7 +131,7 @@ fn test_signing_method_hmd5() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -154,7 +154,7 @@ fn test_signing_method_none() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := ""
+	key := ""
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -168,8 +168,8 @@ fn test_signing_method_none() {
 }
 
 fn test_signing_method_hs256_check() {
-    key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
-    token_str := "eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
+	key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
+	token_str := "eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
 
 	key_bytes := hex.decode(key)!
 
@@ -191,8 +191,8 @@ fn test_signing_method_hs256_check() {
 }
 
 fn test_signing_method_hs384_check() {
-    key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
-    token_str := "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjEuMzAwODE5MzhlKzA5LCJodHRwOi8vZXhhbXBsZS5jb20vaXNfcm9vdCI6dHJ1ZSwiaXNzIjoiam9lIn0.KWZEuOD5lbBxZ34g7F-SlVLAQ_r5KApWNWlZIIMyQVz5Zs58a7XdNzj5_0EcNoOy"
+	key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
+	token_str := "eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJleHAiOjEuMzAwODE5MzhlKzA5LCJodHRwOi8vZXhhbXBsZS5jb20vaXNfcm9vdCI6dHJ1ZSwiaXNzIjoiam9lIn0.KWZEuOD5lbBxZ34g7F-SlVLAQ_r5KApWNWlZIIMyQVz5Zs58a7XdNzj5_0EcNoOy"
 
 	key_bytes := hex.decode(key)!
 
@@ -214,8 +214,8 @@ fn test_signing_method_hs384_check() {
 }
 
 fn test_signing_method_hs512_check() {
-    key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
-    token_str := "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjEuMzAwODE5MzhlKzA5LCJodHRwOi8vZXhhbXBsZS5jb20vaXNfcm9vdCI6dHJ1ZSwiaXNzIjoiam9lIn0.CN7YijRX6Aw1n2jyI2Id1w90ja-DEMYiWixhYCyHnrZ1VfJRaFQz1bEbjjA5Fn4CLYaUG432dEYmSbS4Saokmw"
+	key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
+	token_str := "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjEuMzAwODE5MzhlKzA5LCJodHRwOi8vZXhhbXBsZS5jb20vaXNfcm9vdCI6dHJ1ZSwiaXNzIjoiam9lIn0.CN7YijRX6Aw1n2jyI2Id1w90ja-DEMYiWixhYCyHnrZ1VfJRaFQz1bEbjjA5Fn4CLYaUG432dEYmSbS4Saokmw"
 
 	key_bytes := hex.decode(key)!
 
@@ -237,8 +237,8 @@ fn test_signing_method_hs512_check() {
 }
 
 fn test_signing_method_none_check() {
-    key_bytes := "".bytes()
-    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ."
+	key_bytes := "".bytes()
+	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ."
 
 	mut h := signing_method_none.new()
 
@@ -267,7 +267,7 @@ fn test_signing_method_blake2b() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "12345678901234567890as1234567890"
+	key := "12345678901234567890as1234567890"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -281,8 +281,8 @@ fn test_signing_method_blake2b() {
 }
 
 fn test_signing_method_blake2b_check() {
-    key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
-    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJCTEFLRTJCIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.zVtM3_PWCeOBjiV3bJcx1KoxeZCUs7zqfy6DF2mfb9M"
+	key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
+	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJCTEFLRTJCIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.zVtM3_PWCeOBjiV3bJcx1KoxeZCUs7zqfy6DF2mfb9M"
 
 	key_bytes := hex.decode(key)!
 
@@ -304,8 +304,8 @@ fn test_signing_method_blake2b_check() {
 }
 
 fn test_signing_method_blake2b_check_fail() {
-    key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
-    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJCTEFLRTJCIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.zVtM3_PWCeOBjiV3bJcx1KoxeZCUs7zqfy6DF2mfb12"
+	key := "0323354b2b0fa5bc837e0665777ba68f5ab328e6f054c928a90f84b2d2502ebfd3fb5a92d20647ef968ab4c377623d223d2e2172052e4f08c0cd9af567d080a3"
+	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJCTEFLRTJCIn0.eyJpc3MiOiJqb2UiLCJleHAiOjEzMDA4MTkzODAsImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.zVtM3_PWCeOBjiV3bJcx1KoxeZCUs7zqfy6DF2mfb12"
 
 	key_bytes := hex.decode(key)!
 
@@ -327,7 +327,7 @@ fn test_signing_method_hs256_data() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign[map[string]string](claims, key.bytes())!
 	assert token_string.len > 0
@@ -363,7 +363,7 @@ fn test_signing_method_hs256_data2() {
 	claims["jti"] = JsonAny("JwtId")
 	claims["userid"] = JsonAny("test")
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign_with_header[map[string]string, map[string]JsonAny](header, claims, key.bytes())!
 	assert token_string.len > 0
@@ -412,7 +412,7 @@ fn test_signing_method_hs256_data3() {
 		expires_at: 1788969629
 	}
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign_with_header[RegisteredHeaders, RegisteredClaims](header, claims, key.bytes())!
 	assert token_string.len > 0
@@ -440,7 +440,7 @@ fn test_signing_method_hs256_data5() {
 		expires_at: 1788969629
 	}
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign_with_header(header, claims, key.bytes())!
 	assert token_string.len > 0
@@ -461,7 +461,7 @@ fn test_signing_method_hs256_data6() {
 	claims["aud"] = "example.com"
 	claims["iat"] = "foo"
 
-    key := "test-key"
+	key := "test-key"
 
 	token_string := h.sign(claims, key.bytes())!
 	assert token_string.len > 0

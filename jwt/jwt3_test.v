@@ -94,11 +94,11 @@ fn test_signing_method_es256k() {
 }
 
 fn test_signing_method_es256_check() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETpIfMi7oTcpgtbeQ0kulzYlAKLQS
 t1pfOGUHtHvce8MEssueOxCHWJKql/sJ+JrJSfqOu5AWlDqGqp77ZA7JCw==
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQg/DkEwUlK8nWyB30J
 RyxjU42bu//wSrGj2szLE/ybKMqgCgYIKoZIzj0DAQehRANCAAROkh8yLuhNymC1
 t5DSS6XNiUAotBK3Wl84ZQe0e9x7wwSyy547EIdYkqqX+wn4mslJ+o67kBaUOoaq
@@ -128,12 +128,12 @@ nvtkDskL
 }
 
 fn test_signing_method_es384_check() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEzl47hn4Zf+CcpbMbmhMOH8SDl5XtISQ9
 QCTg3AvHtyiUjBuTBoSi0D76NiGQHfSCu28kQK83oM8LTIwJxsxPaCF5wpuyXM7s
 l+LET6C/HfkTbXO2VYxC/7K4E1qIVgN7
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MIG/AgEAMBAGByqGSM49AgEGBSuBBAAiBIGnMIGkAgEBBDCKkU3/bJJS2nV+u4FS
 gCLgcaNaDnyB7sEEhXvCLf4DJiLWplxb/lNdHKtEVbx828OgBwYFK4EEACKhZANi
 AATOXjuGfhl/4JylsxuaEw4fxIOXle0hJD1AJODcC8e3KJSMG5MGhKLQPvo2IZAd
@@ -164,13 +164,13 @@ A3s=
 }
 
 fn test_signing_method_es512_check() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MIGbMBAGByqGSM49AgEGBSuBBAAjA4GGAAQB5SlzIESgK4L2JngDSaRUmzpQ+dRq
 VP450M4VqKJo7+DE/1K8+LU85DGNYFjSKTBTWCs3M3U+kFnGgr2MfNHzdtAAsGWE
 KQ4W+JQKN6yqLz1OcAc8BnzAzF91mGjwoJURLpNZldd0y1ucbL9EmyjqB0LmhokP
 FW9ltEEMEvInnLkEKvI=
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MIH3AgEAMBAGByqGSM49AgEGBSuBBAAjBIHfMIHcAgEBBEIAyYKP3zmWUSvKgv9B
 YFSQ8SNvCUWQ+ac4o8xxVxQ0xJJYi5r86HoOcPafRhA08FpL5QsbH09t7SIb4/u3
 SRoaHamgBwYFK4EEACOhgYkDgYYABAHlKXMgRKArgvYmeANJpFSbOlD51GpU/jnQ
@@ -202,11 +202,11 @@ QQwS8iecuQQq8g==
 }
 
 fn test_signing_method_es256k_check() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MFYwEAYHKoZIzj0CAQYFK4EEAAoDQgAEy8wuv6+fXodLPLfhxm132y1R8m4dkng7
 tHe7N+sULV2Eth6AxEXQfd+E4nuceR21UNCvQKqxiYwCzVwIKcHe/A==
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MIGNAgEAMBAGByqGSM49AgEGBSuBBAAKBHYwdAIBAQQgxOKd7ezy1P7xuzAMzj/P
 yj7AhgZv09A+vDzHo27pAN2gBwYFK4EEAAqhRANCAATLzC6/r59eh0s8t+HGbXfb
 LVHybh2SeDu0d7s36xQtXYS2HoDERdB934Tie5x5HbVQ0K9AqrGJjALNXAgpwd78

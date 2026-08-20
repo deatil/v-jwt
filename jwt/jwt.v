@@ -70,14 +70,14 @@ pub fn (j Jwter[S, V]) sign[T](claims T, sign_key S) !string {
 }
 
 pub fn (j Jwter[S, V]) sign_with_header[A, B](header A, claims B, sign_key S) !string {
-    mut t := Token.new()
-    t.set_header[A](header)
-    t.set_claims[B](claims)
+	mut t := Token.new()
+	t.set_header[A](header)
+	t.set_claims[B](claims)
 
 	signing_string := t.signing_string()
 	signature := j.signer.sign(signing_string.bytes(), sign_key)!
 
-    t.with_signature(signature.bytestr())
+	t.with_signature(signature.bytestr())
 
 	return t.signed_string()
 }

@@ -12,12 +12,12 @@ fn test_token() {
 	signature := "test-signature"
 
 	check1 := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9"
-    check2 := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.dGVzdC1zaWduYXR1cmU"
+	check2 := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.dGVzdC1zaWduYXR1cmU"
 
-    mut token := Token.new()
-    token.set_header[map[string]string](header)
-    token.set_claims[map[string]string](claims)
-    token.with_signature(signature)
+	mut token := Token.new()
+	token.set_header[map[string]string](header)
+	token.set_claims[map[string]string](claims)
+	token.with_signature(signature)
 
 	res1 := token.signing_string()
 	assert res1 == check1
@@ -85,7 +85,7 @@ fn test_token() {
 }
 
 fn test_token_from_string() {
-    token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.dGVzdC1zaWduYXR1cmU"
+	token_str := "eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9.eyJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6ImZvbyJ9.dGVzdC1zaWduYXR1cmU"
 
 	t := Token.from_string(token_str)
 

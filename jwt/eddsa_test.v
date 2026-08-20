@@ -10,7 +10,7 @@ fn test_eddsa() {
 
 	pubkey, prikey := ed25519.generate_key()!
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0
@@ -24,10 +24,10 @@ fn test_eddsa() {
 }
 
 fn test_eddsa2() {
-    pub_key := '-----BEGIN PUBLIC KEY-----
+	pub_key := '-----BEGIN PUBLIC KEY-----
 MCowBQYDK2VwAyEAj/CWF9RnNKe/L0jHWHpUICXDowaNYLbj7Ck/wdzTvE4=
 -----END PUBLIC KEY-----'
-    pri_key := '-----BEGIN PRIVATE KEY-----
+	pri_key := '-----BEGIN PRIVATE KEY-----
 MC4CAQAwBQYDK2VwBCIEIK3jWwBPmk1J4dynA3CjSfOLP9seazHZYZ6MCqCU+n0f
 -----END PRIVATE KEY-----'
 
@@ -36,7 +36,7 @@ MC4CAQAwBQYDK2VwBCIEIK3jWwBPmk1J4dynA3CjSfOLP9seazHZYZ6MCqCU+n0f
 
 	mut h := signing_eddsa
 
-    msg := "test-data"
+	msg := "test-data"
 
 	signed := h.sign(msg.bytes(), prikey)!
 	assert signed.len > 0

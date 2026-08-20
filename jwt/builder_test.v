@@ -19,7 +19,7 @@ fn test_signing_method_hs256_builder() {
 	b.related_to("subject")
 	b.set_claim("userid", JsonAny("test"))
 
-    key := "test-key"
+	key := "test-key"
 
 	token := b.get_token(key.bytes())!
 
