@@ -120,5 +120,33 @@ nvtkDskL
 
 	veri2 := h.verify(msg.bytes(), signed2_bytes, pubkey)!
 	assert true == veri2
+}
 
+fn test_es256_check_fail() {
+    pub_key := '-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAETpIfMi7oTcpgtbeQ0kulzYlAKLQS
+t1pfOGUHtHvce8MEssueOxCHWJKql/sJ+JrJSfqOu5AWlDqGqp77ZA7JCw==
+-----END PUBLIC KEY-----'
+
+	pubkey := ecdsa.pubkey_from_string(pub_key)!
+
+	mut h := signing_es256
+
+    msg := "test-data"
+	signed := "c732644e4fa95675537d5060011db49bfc28bcacf5482af09089bfbfb2fd60c4117589c5b786b31976d8e006e2d3d479e9aca297dda0b5d3df13b2"
+
+	signed_bytes := hex.decode(signed)!
+
+	veri := h.verify(msg.bytes(), signed_bytes, pubkey)!
+	assert false == veri
+
+	// =========
+
+	mut need_err := false
+	converter_to_asn1(signed_bytes, 32) or {
+		need_err = true
+		assert err.msg() == "JWT signature length 59 bytes not equal 64 bytes."
+	}
+
+	assert need_err
 }

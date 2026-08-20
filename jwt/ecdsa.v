@@ -1,11 +1,9 @@
 module jwt
 
 import hash
-import encoding.hex
 import crypto.ecdsa
 import crypto.sha256
 import crypto.sha512
-import x.encoding.asn1
 
 pub const signing_es256 = ECDSA{
 	name: "ES256"
@@ -51,29 +49,15 @@ pub fn (e ECDSA) sign(msg []u8, key ecdsa.PrivateKey) ![]u8 {
 		custom_hash: e.hash
 	})!
 
-	res := SigData.decode(sig)!
-
-	r_bytes := hex.decode(res.r.hex())!
-	s_bytes := hex.decode(res.s.hex())!
-
-	mut siged := []u8{len: 2 * e.key_size}
-
-	copy(mut siged[e.key_size - r_bytes.len..e.key_size], r_bytes)
-	copy(mut siged[2 * e.key_size - s_bytes.len..], s_bytes)
+	siged := converter_from_asn1(sig, e.key_size)!
 
 	return siged
 }
 
 pub fn (e ECDSA) verify(msg []u8, signature []u8, key ecdsa.PublicKey) !bool {
-	if signature.len != 2 * e.key_size {
+	siged := converter_to_asn1(signature, e.key_size) or {
 		return false
 	}
-
-	r := asn1.Integer.from_hex(signature[..e.key_size].hex())!
-	s := asn1.Integer.from_hex(signature[e.key_size..].hex())!
-
-	sig := SigData{r, s}
-	siged := asn1.encode(sig)!
 
 	res := key.verify(msg, siged, ecdsa.SignerOpts{
 		hash_config: .with_custom_hash
@@ -81,5 +65,6 @@ pub fn (e ECDSA) verify(msg []u8, signature []u8, key ecdsa.PublicKey) !bool {
 		allow_smaller_size: true
 		custom_hash: e.hash
 	})!
+
 	return res
 }

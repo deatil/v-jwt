@@ -81,4 +81,3 @@ fn check_eddsa_publickey_oid(oid asn1.ObjectIdentifier) ! {
 		return error("JWT EdDSA Oid Error")
 	}
 }
-
